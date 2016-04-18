@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы исходного кода">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Geometry">
+      <UniqueIdentifier>{99838081-3c7d-4c6a-bae7-4a712799f29d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Instruments">
+      <UniqueIdentifier>{8f6e2cac-242a-4d6c-a001-1dddf6e5edfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Objects">
+      <UniqueIdentifier>{b0de1a4c-9773-44dd-8da6-acd4c2fe3053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Utilites">
+      <UniqueIdentifier>{0a869e0a-35bb-4bb8-8915-1a9b3d8b5920}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="input.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="output.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BoundinBox.h">
+      <Filter>Заголовочные файлы\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="IGeom.h">
+      <Filter>Заголовочные файлы\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Заголовочные файлы\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Заголовочные файлы\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray.h">
+      <Filter>Заголовочные файлы\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Заголовочные файлы\Instruments</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Заголовочные файлы\Instruments</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>Заголовочные файлы\Instruments</Filter>
+    </ClInclude>
+    <ClInclude Include="IObject.h">
+      <Filter>Заголовочные файлы\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectColor.h">
+      <Filter>Заголовочные файлы\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Poligon.h">
+      <Filter>Заголовочные файлы\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Заголовочные файлы\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>Заголовочные файлы\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageCreator.h">
+      <Filter>Заголовочные файлы\Utilites</Filter>
+    </ClInclude>
+    <ClInclude Include="Painter.h">
+      <Filter>Заголовочные файлы\Utilites</Filter>
+    </ClInclude>
+    <ClInclude Include="Printer.h">
+      <Filter>Заголовочные файлы\Utilites</Filter>
+    </ClInclude>
+    <ClInclude Include="Reader.h">
+      <Filter>Заголовочные файлы\Utilites</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
