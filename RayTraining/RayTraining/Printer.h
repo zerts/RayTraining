@@ -9,22 +9,40 @@ using namespace std;
 
 ifstream in("input.txt");
 ofstream out("output.txt");
+ofstream dout("debugOutput.txt");
 
 class Printer {
 public:
 	void print(ObjectColor color) {
-		out << "Color = (" << color.getRed() << ", " << color.getGreen() << ", " << color.getBlue() << ")\n";
+		dout << "Color = (" << color.getRed() << ", " << color.getGreen() << ", " << color.getBlue() << ")\n";
+	}
+	void print(vector<vector<ObjectColor> > pixels) {
+		for (size_t i = 0; i < pixels.size(); i++) {
+			for (size_t j = 0; j < pixels[i].size(); j++) {
+				print(pixels[i][j]);
+			}
+		}
 	}
 	void print(MyPoint p) {
-		out << "Point = (" << p.getX() << ", " << p.getY() << ", " << p.getZ() << ")\n";
+		dout << "Point = (" << p.getX() << ", " << p.getY() << ", " << p.getZ() << ")\n";
 	}
 	void print(string s) {
-		out << s << endl;
+		dout << s << endl;
 	}
 	void print(Plane p) {
-		out << "Plane = (" << p.getA() << ", " << p.getB() << ", " << p.getC() << ", " << p.getD() << ")\n";
+		dout << "Plane = (" << p.getA() << ", " << p.getB() << ", " << p.getC() << ", " << p.getD() << ")\n";
 	}
 	void print(long double i) {
-		out << i << endl;
+		dout << i << endl;
+	}
+	void printImage(vector<vector<ObjectColor> > &pixels) {
+		out << pixels.size() << " " << pixels[0].size() << endl;
+		for (size_t i = 0; i < pixels.size(); i++) {
+			for (size_t j = 0; j < pixels[i].size(); j++) {
+				out << pixels[i][j].getRed() << " " 
+					<< pixels[i][j].getGreen()<< " " 
+					<< pixels[i][j].getBlue() << endl;
+			}
+		}
 	}
 };

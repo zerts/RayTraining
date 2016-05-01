@@ -4,7 +4,7 @@
 
 using namespace std;
 
-const long double EPS = 1e-7;
+const long double EPS = 1e-9;
 const long double INF = 1e30;
 
 long double sqr(long double x) {

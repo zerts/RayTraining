@@ -31,6 +31,9 @@ public:
 		return currX + 1 < width;
 	}
 
+	MyPoint getCorner() { return corner; }
+	long double getStep() { return xDirection.length(); }
+
 	MyPoint next() {
 		MyPoint curr = corner
 			+ xDirection * currX

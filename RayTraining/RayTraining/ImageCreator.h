@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include"IObject.h"
 #include <vector>
@@ -31,4 +31,4 @@ void createImage(vector<vector<ObjectColor> > &pixels, System::String ^fileName)
 	}
 	bitmap.RotateFlip(System::Drawing::RotateFlipType::Rotate90FlipNone);
 	bitmap.Save(fileName, System::Drawing::Imaging::ImageFormat::Png);
-}
+}*/

@@ -25,6 +25,9 @@
     <Filter Include="Заголовочные файлы\Utilites">
       <UniqueIdentifier>{0a869e0a-35bb-4bb8-8915-1a9b3d8b5920}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Заголовочные файлы\Utilites\NewFilter1">
+      <UniqueIdentifier>{3d530d43-eac9-47c7-b39a-aa4576b6c583}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -36,6 +39,9 @@
       <Filter>Файлы ресурсов</Filter>
     </Text>
     <Text Include="output.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="debugOutput.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
   </ItemGroup>
@@ -79,9 +85,6 @@
     <ClInclude Include="Triangle.h">
       <Filter>Заголовочные файлы\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="ImageCreator.h">
-      <Filter>Заголовочные файлы\Utilites</Filter>
-    </ClInclude>
     <ClInclude Include="Painter.h">
       <Filter>Заголовочные файлы\Utilites</Filter>
     </ClInclude>
@@ -93,6 +96,12 @@
     </ClInclude>
     <ClInclude Include="KdTree.h">
       <Filter>Заголовочные файлы\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageCreator.h">
+      <Filter>Заголовочные файлы\Utilites</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

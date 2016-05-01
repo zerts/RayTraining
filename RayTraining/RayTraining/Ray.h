@@ -150,9 +150,10 @@ public:
 	}
 
 	long double getMinDistanceToObject(KdTree *root) {
+		long double minDist = INF;
+		bool putTwoToStack = true;
 		vector<KdTree*> treeStack;
 		treeStack.push_back(root);
-		long double minDist = INF;
 		while (!treeStack.empty()) {
 			KdTree* currNode = treeStack.back();
 			treeStack.pop_back();
@@ -160,8 +161,10 @@ public:
 			if (isIntersection(currNode->getObject()) && start.distance(intersection(currNode->getObject())) < minDist) {
 				//printer.print("Yes");
 				minDist = start.distance(intersection(currNode->getObject()));
+				//treeStack.clear();
 
 			}
+
 			long double leftDistance = INF, rightDistance = INF;
 			if (currNode->getLeft() != NULL) {
 				leftDistance = distanceToBox(currNode->getLeft()->getBox());
@@ -175,8 +178,11 @@ public:
 				else if (rightDistance != INF && rightDistance <= leftDistance) {
 					if (leftDistance != INF) {
 						treeStack.push_back(currNode->getLeft());
+						treeStack.push_back(currNode->getRight());
 					}
-					treeStack.push_back(currNode->getRight());
+					else {
+						treeStack.push_back(currNode->getRight());
+					}
 				}
 				else if (leftDistance != INF) {
 					treeStack.push_back(currNode->getLeft());
@@ -191,10 +197,11 @@ public:
 		if (distanceToBox(root->getBox()) == INF) {
 			return returnColor;
 		}
+		bool putTwoToStack = true;
 		IObject *resultObject = NULL;
 		long double minDist = INF;
 		MyPoint resultPoint;
-		vector<KdTree*> treeStack;
+		vector< KdTree*> treeStack;
 		treeStack.push_back(root);
 		while (!treeStack.empty()) {
 			KdTree* currNode = treeStack.back();
@@ -206,8 +213,10 @@ public:
 				minDist = start.distance(intersection(currNode->getObject()));
 				resultPoint = intersection(currNode->getObject());
 				resultObject = currNode->getObject();
+				//treeStack.clear();
 
 			}
+
 			long double leftDistance = INF, rightDistance = INF;
 			if (currNode->getLeft() != NULL) {
 				leftDistance = distanceToBox(currNode->getLeft()->getBox());
@@ -221,8 +230,11 @@ public:
 				else if (rightDistance != INF && rightDistance <= leftDistance) {
 					if (leftDistance != INF) {
 						treeStack.push_back(currNode->getLeft());
+						treeStack.push_back(currNode->getRight());
 					}
-					treeStack.push_back(currNode->getRight());
+					else {
+						treeStack.push_back(currNode->getRight());
+					}
 				}
 				else if (leftDistance != INF) {
 					treeStack.push_back(currNode->getLeft());
