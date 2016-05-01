@@ -10,12 +10,12 @@ private:
 	Printer printer;
 public:
 	MyScreen() {};
-	MyScreen(MyPoint ccorner, size_t h, size_t w) {
+	MyScreen(MyPoint ccorner, size_t h, size_t w, long double step) {
 		corner = ccorner;
 		heigth = h;
 		width = w;
-		xDirection = MyPoint(1., 0., 0.);
-		yDirection = MyPoint(0., 1., 0.);
+		xDirection = MyPoint(step, 0., 0.);
+		yDirection = MyPoint(0., step, 0.);
 		currX = 0;
 		currY = 0;
 	}

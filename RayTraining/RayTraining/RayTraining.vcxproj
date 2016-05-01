@@ -135,6 +135,7 @@
     <ClInclude Include="IGeom.h" />
     <ClInclude Include="ImageCreator.h" />
     <ClInclude Include="IObject.h" />
+    <ClInclude Include="KdTree.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="ObjectColor.h" />
     <ClInclude Include="Painter.h" />
@@ -147,6 +148,9 @@
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Triangle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="image.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

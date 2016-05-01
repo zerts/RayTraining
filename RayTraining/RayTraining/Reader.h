@@ -52,7 +52,7 @@ public:
 		while (in >> s) {
 			if (s == triangle) {
 				objects.push_back(getNewTriangle());
-				objects.back()->setColor(250, 0, 0);
+				objects.back()->setColor(250, 200, 100);
 			}
 			if (s == endOfFile) {
 				break;

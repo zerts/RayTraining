@@ -17,6 +17,7 @@ public:
 	Sphere(MyPoint c, long double rr) {
 		center = c;
 		r = rr;
+		createBoundinBox();
 	}
 
 	MyPoint getCenter() { return center; }
@@ -56,5 +57,13 @@ public:
 	}
 	Plane getPlaneInPoint(MyPoint point) {
 		return Plane(point, getNormal(point));
+	}
+
+	void createBoundinBox() {
+		box = BoundinBox(
+			center.getX() + r, center.getX() - r,
+			center.getY() + r, center.getY() - r,
+			center.getZ() + r, center.getZ() - r
+			);
 	}
 };

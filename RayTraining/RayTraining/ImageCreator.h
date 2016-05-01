@@ -2,6 +2,7 @@
 
 #include"IObject.h"
 #include <vector>
+#include <string>
 
 #using <System.dll>
 #using <System.Drawing.dll>
@@ -13,7 +14,7 @@ using namespace System::Drawing;
 using namespace System::ComponentModel;
 using namespace System::Windows::Forms;
 
-void createImage(vector<vector<ObjectColor> > &pixels)
+void createImage(vector<vector<ObjectColor> > &pixels, System::String ^fileName)
 {
 	size_t height = pixels[0].size(), width = pixels.size();
 	Bitmap bitmap(height, width);
@@ -28,5 +29,6 @@ void createImage(vector<vector<ObjectColor> > &pixels)
 				currColor.getBlue()));
 		}
 	}
-	bitmap.Save("image.png", System::Drawing::Imaging::ImageFormat::Png);
+	bitmap.RotateFlip(System::Drawing::RotateFlipType::Rotate90FlipNone);
+	bitmap.Save(fileName, System::Drawing::Imaging::ImageFormat::Png);
 }

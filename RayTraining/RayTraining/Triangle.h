@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cmath>
+#include <algorithm>
 #include "Ray.h"
 #include "IObject.h"
 #include "Printer.h"
@@ -20,11 +21,16 @@ public:
 		b = bb;
 		c = cc;
 		plane = Plane(aa, bb, cc);
+		createBoundinBox();
 	}
 	MyPoint getA() { return a; }
 	MyPoint getB() { return b; }
 	MyPoint getC() { return c; }
 	Plane getPlane() { return plane; }
+
+	bool collinear(IGeom* ray) {
+		return ray->getDirection() * plane.getN() < EPS;
+	}
 
 	bool hasPoint(MyPoint p) {
 		MyPoint first = a - p, second = b - p, third = c - p;
@@ -33,7 +39,7 @@ public:
 	}
 
 	bool isIntersectWithRay(IGeom *ray) {
-		return hasPoint(ray->intersection(plane));
+		return /*!collinear(ray) && */hasPoint(ray->intersection(plane));
 	}
 
 	MyPoint getIntersectionWithRay(IGeom *ray) {
@@ -58,5 +64,16 @@ public:
 	}
 	Plane getPlaneInPoint(MyPoint point) {
 		return plane;
+	}
+
+	void createBoundinBox() {
+		box = BoundinBox(
+			threeMax(a.getX(), b.getX(), c.getX()),
+			threeMin(a.getX(), b.getX(), c.getX()),
+			threeMax(a.getY(), b.getY(), c.getY()),
+			threeMin(a.getY(), b.getY(), c.getY()),
+			threeMax(a.getZ(), b.getZ(), c.getZ()),
+			threeMin(a.getZ(), b.getZ(), c.getZ())
+			);
 	}
 };

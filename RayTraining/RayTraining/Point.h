@@ -88,5 +88,4 @@ public:
 		MyPoint curr = MyPoint(x, y, z);
 		return (curr * anotherPoint) / (curr.length() * anotherPoint.length());
 	}
-
 };

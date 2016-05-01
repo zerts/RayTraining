@@ -38,7 +38,7 @@ public:
 			c = bb;
 			d = cc;
 		}
-
+		createBoundinBox();
 		plane = Plane(aa, bb, cc);
 	}
 	MyPoint getA() { return a; }
@@ -47,12 +47,16 @@ public:
 	MyPoint getD() { return d; }
 	Plane getPlane() { return plane; }
 
+	bool collinear(IGeom* ray) {
+		return ray->getDirection() * plane.getN() < EPS;
+	}
+
 	bool hasPoint(MyPoint p) {
 		return Triangle(a, b, d).hasPoint(p) || Triangle(b, c, d).hasPoint(p);
 	}
 
 	bool isIntersectWithRay(IGeom *ray) {
-		return hasPoint(ray->intersection(plane));
+		return !collinear(ray) && hasPoint(ray->intersection(plane));
 	}
 
 	MyPoint getIntersectionWithRay(IGeom *ray) {
@@ -77,5 +81,16 @@ public:
 	}
 	Plane getPlaneInPoint(MyPoint point) {
 		return plane;
+	}
+
+	void createBoundinBox() {
+		box = BoundinBox(
+			fourMax(a.getX(), b.getX(), c.getX(), d.getX()),
+			fourMin(a.getX(), b.getX(), c.getX(), d.getX()),
+			fourMax(a.getY(), b.getY(), c.getY(), d.getY()),
+			fourMin(a.getY(), b.getY(), c.getY(), d.getY()),
+			fourMax(a.getZ(), b.getZ(), c.getZ(), d.getZ()),
+			fourMin(a.getZ(), b.getZ(), c.getZ(), d.getZ())
+			);
 	}
 };

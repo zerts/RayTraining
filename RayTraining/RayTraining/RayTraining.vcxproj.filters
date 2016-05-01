@@ -91,5 +91,13 @@
     <ClInclude Include="Reader.h">
       <Filter>Заголовочные файлы\Utilites</Filter>
     </ClInclude>
+    <ClInclude Include="KdTree.h">
+      <Filter>Заголовочные файлы\Objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="image.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
 </Project>
