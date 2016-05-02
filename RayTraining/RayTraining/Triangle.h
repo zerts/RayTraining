@@ -76,4 +76,15 @@ public:
 			threeMin(a.getZ(), b.getZ(), c.getZ())
 			);
 	}
+
+	ObjectColor getTextureColor(MyPoint point) {
+		if (!getIsTexture()) {
+			return getColor();
+		}
+		long double dist = 10 * point.distance(a), currCos = (point - a).getAngleCos(b - a);
+		int currX = (int)floor(dist * currCos),
+			currY = (int)floor(dist * sqrtl(1 - sqr(currCos)));
+		//printer.print(texture->getColor(currX, currY));
+		return texture->getColor(currX, currY);
+	}
 };

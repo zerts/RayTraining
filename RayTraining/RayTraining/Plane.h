@@ -37,6 +37,7 @@ public:
 	}
 
 	MyPoint getN() {
-		return MyPoint(a, b, c);
+		MyPoint ret = MyPoint(a, b, c);
+		return ret;
 	}
 };

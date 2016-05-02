@@ -86,6 +86,9 @@ public:
 
 	long double getAngleCos(MyPoint anotherPoint) {
 		MyPoint curr = MyPoint(x, y, z);
+		if (curr.length() * anotherPoint.length() == 0.) {
+			return 0.;
+		}
 		return (curr * anotherPoint) / (curr.length() * anotherPoint.length());
 	}
 };

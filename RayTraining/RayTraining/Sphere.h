@@ -66,4 +66,10 @@ public:
 			center.getZ() + r, center.getZ() - r
 			);
 	}
+	ObjectColor getTextureColor(MyPoint point) {
+		if (!getIsTexture()) {
+			return getColor();
+		}
+		return getColor();
+	}
 };

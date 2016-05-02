@@ -25,9 +25,6 @@
     <Filter Include="Заголовочные файлы\Utilites">
       <UniqueIdentifier>{0a869e0a-35bb-4bb8-8915-1a9b3d8b5920}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Заголовочные файлы\Utilites\NewFilter1">
-      <UniqueIdentifier>{3d530d43-eac9-47c7-b39a-aa4576b6c583}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -102,6 +99,9 @@
     </ClInclude>
     <ClInclude Include="ImageCreator.h">
       <Filter>Заголовочные файлы\Utilites</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Заголовочные файлы\Instruments</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

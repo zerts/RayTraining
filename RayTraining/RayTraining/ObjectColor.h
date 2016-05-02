@@ -17,4 +17,10 @@ public:
 	ObjectColor operator*(long double t) {
 		return ObjectColor(red * t, green * t, blue * t);
 	}
+	ObjectColor operator+(ObjectColor anotherColor) {
+		return ObjectColor(
+			red + anotherColor.getRed(), 
+			green + anotherColor.getGreen(), 
+			blue + anotherColor.getBlue());
+	}
 };

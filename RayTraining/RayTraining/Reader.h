@@ -24,6 +24,7 @@ private:
 	Printer printer;
 	Camera camera;
 	MyScreen screen;
+	Texture *texture;
 
 	Triangle* getNewTriangle() {
 		MyPoint first, second, third;
@@ -46,6 +47,8 @@ public:
 	void init(Camera cam, MyScreen scr) {
 		camera = cam;
 		screen = scr;
+		texture = new Texture();
+		texture->init();
 	}
 
 	vector<IObject*> getObjects() {
@@ -53,6 +56,8 @@ public:
 			if (s == triangle) {
 				objects.push_back(getNewTriangle());
 				objects.back()->setColor(250, 200, 100);
+				objects.back()->setMirror(70);
+				objects.back()->setTexture(texture);
 			}
 			if (s == endOfFile) {
 				break;

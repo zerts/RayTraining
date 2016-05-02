@@ -6,12 +6,16 @@
 #include "Printer.h"
 #include "ObjectColor.h"
 #include "BoundinBox.h"
+#include "Texture.h"
 
 class IObject {
 protected:
 	ObjectColor color;
+	long double alpha, mirror;
+	bool isTexture;
 	Printer printer;
 	BoundinBox box;
+	Texture *texture;
 
 	long double threeMax(long double aa, long double bb, long double cc) {
 		return max(max(aa, bb), cc);
@@ -28,13 +32,25 @@ protected:
 
 public:
 	ObjectColor getColor() { return color; }
+
+	virtual ObjectColor getTextureColor(MyPoint) = 0;
+
+	bool getIsTexture() { return isTexture; }
 	void setColor(int r, int g, int b) {
 		color = ObjectColor(r, g, b);
 	}
-
-	BoundinBox getBox() {
-		return box;
+	void setMirror(int m) {
+		mirror = (long double)m / 100.;
 	}
+
+	void setTexture(Texture *t) {
+		isTexture = true;
+		texture = t;
+	}
+
+	BoundinBox getBox() { return box;	}
+	long double getAlpha() { return alpha; }
+	long double getMirror() { return mirror; }
 
 	virtual bool isIntersectWithRay(IGeom*) = 0;
 

@@ -1,7 +1,9 @@
-1247
 Point = (-100, -100, 20)
-Point = (-100, -37.5, 20)
-Point = (-100, 25, 20)
-Point = (-100, 87.5, 20)
-time with kdtree = 11.5129
+Point = (-100, -64.5, 20)
+Point = (-100, -29, 20)
+Point = (-100, 6.5, 20)
+Point = (-100, 42, 20)
+Point = (-100, 77.5, 20)
+Point = (-100, 113, 20)
+time with kdtree = 6.8891
 time without kdtree = 0

@@ -9,7 +9,7 @@
 #include "Camera.h"
 #include "BoundinBox.h"
 #include "KdTree.h"
-
+ 
 using namespace std;
 
 class Ray : public IGeom {
@@ -23,7 +23,7 @@ private:
 			return 0.;
 		}
 		MyPoint ray = MyPoint(point - light->getPlace());
-		return max(0.l, light->getPower() * ray.getAngleCos(currObject->getNormal(point)) / (point.distanceSqr(light->getPlace()) / 10000));
+		return max(0.l, light->getPower() * ray.getAngleCos(currObject->getNormal(point)) / (point.distanceSqr(light->getPlace()) / 100000));
 	}
 
 	long double getBrightness(MyPoint camera, MyPoint point, KdTree *root, vector<Light*> &lights, IObject *currObject) {
@@ -192,7 +192,7 @@ public:
 		return minDist;
 	}
 
-	ObjectColor getColor(MyPoint camera, KdTree *root, vector<Light*> &lights) {
+	ObjectColor getColor(bool hasMirrored, MyPoint camera, KdTree *root, vector<Light*> &lights) {
 		ObjectColor returnColor = ObjectColor(0, 0, 0);
 		if (distanceToBox(root->getBox()) == INF) {
 			return returnColor;
@@ -207,11 +207,12 @@ public:
 			KdTree* currNode = treeStack.back();
 			treeStack.pop_back();
 
-			if (isIntersection(currNode->getObject()) && start.distance(intersection(currNode->getObject())) < minDist) {
+			if (isIntersection(currNode->getObject()) && start.distance(intersection(currNode->getObject())) < minDist
+				&& direction.getAngleCos(intersection(currNode->getObject()) - start) > 0.) {
 				//printer.print("Yes");
-				returnColor = currNode->getObject()->getColor();
-				minDist = start.distance(intersection(currNode->getObject()));
 				resultPoint = intersection(currNode->getObject());
+				returnColor = currNode->getObject()->getTextureColor(resultPoint);
+				minDist = start.distance(intersection(currNode->getObject()));
 				resultObject = currNode->getObject();
 				//treeStack.clear();
 
@@ -244,7 +245,16 @@ public:
 		if (resultObject == NULL) {
 			return returnColor;
 		}
-		return returnColor * getBrightness(camera, resultPoint, root, lights, resultObject);
+		MyPoint norm = resultObject->getNormal(resultPoint);
+		MyPoint newDirection = (resultPoint - camera) + (norm * (norm * (camera - resultPoint)) * (2));
+		//printer.print(newDirection);
+		/*if (hasMirrored) {
+			return returnColor;// *getBrightness(camera, resultPoint, root, lights, resultObject);
+		}*/
+		//printer.print(returnColor);
+		return (returnColor * resultObject->getMirror() * getBrightness(camera, resultPoint, root, lights, resultObject));
+			/*+ (Ray(resultPoint + (newDirection * 0.1), resultPoint + newDirection)
+				.getColor(true, resultPoint, root, lights) * (1. - resultObject->getMirror()));*/
 	}
 
 	ObjectColor _getColor(MyPoint camera, vector<IObject*> &objects, vector<Light*> &lights) {

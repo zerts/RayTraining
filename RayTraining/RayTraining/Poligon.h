@@ -93,4 +93,10 @@ public:
 			fourMin(a.getZ(), b.getZ(), c.getZ(), d.getZ())
 			);
 	}
+	ObjectColor getTextureColor(MyPoint point) {
+		if (!getIsTexture()) {
+			return getColor();
+		}
+		return getColor();
+	}
 };
