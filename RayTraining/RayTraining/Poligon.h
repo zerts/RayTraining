@@ -76,8 +76,11 @@ public:
 		return second.distance(first) > second.distance(getIntersectionWithRay(&ray));
 	}
 
-	MyPoint getNormal(MyPoint point) {
-		return plane.getN();
+	MyPoint getNormal(MyPoint point, MyPoint camera) {
+		if ((camera - point) * plane.getN() < 0) {
+			return plane.getN();
+		}
+		return plane.getN() * (-1.);
 	}
 	Plane getPlaneInPoint(MyPoint point) {
 		return plane;

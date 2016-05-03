@@ -15,13 +15,16 @@ private:
 	MyPoint a, b, c;
 	Plane plane;
 public:
-	Triangle() {};
+	Triangle() {
+		isTexture = false;
+	};
 	Triangle(MyPoint aa, MyPoint bb, MyPoint cc) {
 		a = aa;
 		b = bb;
 		c = cc;
 		plane = Plane(aa, bb, cc);
 		createBoundinBox();
+		isTexture = false;
 	}
 	MyPoint getA() { return a; }
 	MyPoint getB() { return b; }
@@ -59,8 +62,11 @@ public:
 		return second.distance(first) > second.distance(getIntersectionWithRay(&ray));
 	}
 
-	MyPoint getNormal(MyPoint point) {
-		return plane.getN();
+	MyPoint getNormal(MyPoint point, MyPoint camera) {
+		if ((camera - point) * plane.getN() < 0) {
+			return plane.getN();
+		}
+		return plane.getN() * (-1.);
 	}
 	Plane getPlaneInPoint(MyPoint point) {
 		return plane;
@@ -81,7 +87,7 @@ public:
 		if (!getIsTexture()) {
 			return getColor();
 		}
-		long double dist = 10 * point.distance(a), currCos = (point - a).getAngleCos(b - a);
+		long double dist = 50 * point.distance(a), currCos = (point - a).getAngleCos(b - a);
 		int currX = (int)floor(dist * currCos),
 			currY = (int)floor(dist * sqrtl(1 - sqr(currCos)));
 		//printer.print(texture->getColor(currX, currY));

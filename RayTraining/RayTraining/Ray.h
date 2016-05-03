@@ -23,35 +23,14 @@ private:
 			return 0.;
 		}
 		MyPoint ray = MyPoint(point - light->getPlace());
-		return max(0.l, light->getPower() * ray.getAngleCos(currObject->getNormal(point)) / (point.distanceSqr(light->getPlace()) / 100000));
+		return max(0.l, light->getPower() * ray.getAngleCos(currObject->getNormal(point, camera)) 
+			/ (point.distanceSqr(light->getPlace()) / 100000));
 	}
 
 	long double getBrightness(MyPoint camera, MyPoint point, KdTree *root, vector<Light*> &lights, IObject *currObject) {
 		long double result = 0;
 		for (size_t i = 0; i < lights.size(); i++) {
 			result += getCurrBrightness(camera, point, lights[i], root, currObject) / lights.size();
-		}
-		return min(1.l, result);
-	}
-
-	long double _getCurrBrightness(MyPoint camera, MyPoint point, Light* light, vector<IObject*> &obj, int currObj) {
-		for (size_t i = 0; i < obj.size(); i++) {
-			if (i != currObj && obj[i]->between(point, light->getPlace())) {
-				return 0.;
-			}
-			if (obj[currObj]->getPlaneInPoint(point).putPoint(camera)
-				* obj[currObj]->getPlaneInPoint(point).putPoint(light->getPlace()) < 0) {
-				return 0.;
-			}
-		}
-		MyPoint ray = MyPoint(point - light->getPlace());
-		return max(0.l, light->getPower() * ray.getAngleCos(obj[currObj]->getNormal(point)) / (point.distanceSqr(light->getPlace()) / 10000));
-	}
-
-	long double _getBrightness(MyPoint camera, MyPoint point, vector<IObject*> &obj, vector<Light*> &lights, int currObj) {
-		long double result = 0;
-		for (size_t i = 0; i < lights.size(); i++) {
-			result += _getCurrBrightness(camera, point, lights[i], obj, currObj) / lights.size();
 		}
 		return min(1.l, result);
 	}
@@ -245,38 +224,16 @@ public:
 		if (resultObject == NULL) {
 			return returnColor;
 		}
-		MyPoint norm = resultObject->getNormal(resultPoint);
-		MyPoint newDirection = (resultPoint - camera) + (norm * (norm * (camera - resultPoint)) * (2));
-		//printer.print(newDirection);
-		/*if (hasMirrored) {
-			return returnColor;// *getBrightness(camera, resultPoint, root, lights, resultObject);
-		}*/
+		MyPoint norm = resultObject->getNormal(resultPoint, camera);
+		norm.normalize();
+		MyPoint newDirection = (camera - resultPoint) + (norm * (norm * (resultPoint - camera)) * (-2.));
+		newDirection = newDirection * 0.0001;
+		if (hasMirrored) {
+			return returnColor * getBrightness(camera, resultPoint, root, lights, resultObject);
+		}
 		//printer.print(returnColor);
-		return (returnColor * resultObject->getMirror() * getBrightness(camera, resultPoint, root, lights, resultObject));
-			/*+ (Ray(resultPoint + (newDirection * 0.1), resultPoint + newDirection)
-				.getColor(true, resultPoint, root, lights) * (1. - resultObject->getMirror()));*/
-	}
-
-	ObjectColor _getColor(MyPoint camera, vector<IObject*> &objects, vector<Light*> &lights) {
-		ObjectColor returnColor = ObjectColor(0, 0, 0);
-		int currObject = -1;
-		long double minDist = INF;
-		MyPoint resultPoint;
-		for (size_t i = 0; i < objects.size(); i++) {
-			if (isIntersection(objects[i]) && start.distance(intersection(objects[i])) < minDist) {
-				//printer.print("Yes");
-				returnColor = objects[i]->getColor();
-				minDist = start.distance(intersection(objects[i]));
-				resultPoint = intersection(objects[i]);
-				currObject = i;
-			}
-			else {
-			//printer.print("No");
-			}
-		}
-		if (currObject == -1) {
-			return returnColor;
-		}
-		return returnColor * _getBrightness(camera, resultPoint, objects, lights, currObject);
+		return (returnColor * resultObject->getMirror() * getBrightness(camera, resultPoint, root, lights, resultObject))
+			+ (Ray(resultPoint + (newDirection * 0.1), resultPoint + newDirection)
+				.getColor(true, resultPoint, root, lights) * (1. - resultObject->getMirror()));
 	}
 };

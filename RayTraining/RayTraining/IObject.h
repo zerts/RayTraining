@@ -58,7 +58,7 @@ public:
 
 	virtual bool between(MyPoint, MyPoint) = 0;
 
-	virtual MyPoint getNormal(MyPoint) = 0;
+	virtual MyPoint getNormal(MyPoint, MyPoint) = 0;
 
 	virtual Plane getPlaneInPoint(MyPoint) = 0;
 

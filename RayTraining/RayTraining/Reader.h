@@ -38,10 +38,7 @@ private:
 		in >> s >> x >> y >> z;
 		third = MyPoint(x, y, z);
 		Triangle tr(first, second, third);
-		if (tr.getNormal(first) * (camera.getPlace() - first) < 0.) {
-			return new Triangle(first, second, third);
-		}
-		return new Triangle(first, third, second);
+		return new Triangle(first, second, third);
 	}
 public:
 	void init(Camera cam, MyScreen scr) {
@@ -55,9 +52,10 @@ public:
 		while (in >> s) {
 			if (s == triangle) {
 				objects.push_back(getNewTriangle());
-				objects.back()->setColor(250, 200, 100);
-				objects.back()->setMirror(70);
-				objects.back()->setTexture(texture);
+				objects.back()->setColor(200, 10, 10);
+				//objects.back()->setColor(rand(), rand(), rand());
+				objects.back()->setMirror(50);
+				//objects.back()->setTexture(texture);
 			}
 			if (s == endOfFile) {
 				break;

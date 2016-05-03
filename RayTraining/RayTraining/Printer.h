@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <string>
+#include <mutex>
 #include "ObjectColor.h"
 #include "Plane.h"
 
@@ -12,9 +13,13 @@ ofstream out("output.txt");
 ofstream dout("debugOutput.txt");
 
 class Printer {
+private:
+	//mutex mut;
 public:
 	void print(ObjectColor color) {
+		//mut.lock();
 		dout << "Color = (" << color.getRed() << ", " << color.getGreen() << ", " << color.getBlue() << ")\n";
+		//mut.unlock();
 	}
 	void print(vector<vector<ObjectColor> > pixels) {
 		for (size_t i = 0; i < pixels.size(); i++) {
@@ -24,7 +29,9 @@ public:
 		}
 	}
 	void print(MyPoint p) {
+		//mut.lock();
 		dout << "Point = (" << p.getX() << ", " << p.getY() << ", " << p.getZ() << ")\n";
+		//mut.unlock();
 	}
 	void print(string s) {
 		dout << s << endl;

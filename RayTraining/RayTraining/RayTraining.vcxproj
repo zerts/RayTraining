@@ -133,7 +133,6 @@
   <ItemGroup>
     <ClInclude Include="BoundinBox.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="Header.h" />
     <ClInclude Include="IGeom.h" />
     <ClInclude Include="ImageCreator.h" />
     <ClInclude Include="IObject.h" />

@@ -21,20 +21,20 @@ void example() {
 	 
 	//Texture *texture = new Texture();
 	//texture->init();
-	//MyScreen screen(MyPoint(0, 0, 20), 1000, 1000, 1);
-	//Camera camera(MyPoint(200, 200, 200));
+	//MyScreen screen(MyPoint(0, 0, 20), 1000, 1000, 0.1);
+	//Camera camera(MyPoint(50, 50, 200));
 
-	/*
-	printer.print(texture->getHeight());
-	vector<IObject*> obj;*/
-	/*obj.push_back(new Triangle(MyPoint(100., 100., -20), MyPoint(0., 150., -1.), MyPoint(0., 100., -20)));
+
+	//printer.print(texture->getHeight());
+	//vector<IObject*> obj;
+	/*obj.push_back(new Triangle(MyPoint(0., 0, -100), MyPoint(-100., 0., -100.), MyPoint(0., 0, 0)));
 	obj.back()->setColor(200, 0, 0);
-	obj.back()->setMirror(100);
-	obj.back()->setTexture(texture);
+	obj.back()->setMirror(70);*/
+	//obj.back()->setTexture(texture);
 
-	obj.push_back(new Triangle(MyPoint(0., 0., -20.), MyPoint(200., 200., -20.), MyPoint(0., 200., -20)));
+	/*obj.push_back(new Triangle(MyPoint(100., 100., -100.), MyPoint(100, 0, -100.), MyPoint(100., 50., -20)));
 	obj.back()->setColor(200, 200, 200);
-	obj.back()->setMirror(100);*/
+	obj.back()->setMirror(70);*/
 
 	/*obj.push_back(new Triangle(MyPoint(0., 0., -100.), MyPoint(200., 300., -30), MyPoint(0., 600, -100)));
 	obj.back()->setColor(0, 0, 200);
@@ -63,7 +63,7 @@ void example() {
 	//lights.push_back(new Light(MyPoint(-30, -30, 30), 0.8));
 	//lights.push_back(new Light(MyPoint(150, 100, 10), 1));
 	//lights.push_back(new Light(MyPoint(50, 350, 10), 1));
-	lights.push_back(new Light(MyPoint(250, 300, 10), 1));
+	lights.push_back(new Light(MyPoint(200, 200, 50), 1));
 
 	std::chrono::time_point<std::chrono::system_clock> start, end;
 	start = std::chrono::system_clock::now();

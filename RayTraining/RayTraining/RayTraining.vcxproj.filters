@@ -94,9 +94,6 @@
     <ClInclude Include="KdTree.h">
       <Filter>Заголовочные файлы\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="ImageCreator.h">
       <Filter>Заголовочные файлы\Utilites</Filter>
     </ClInclude>

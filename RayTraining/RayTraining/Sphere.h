@@ -52,11 +52,11 @@ public:
 		return second.distance(first) > second.distance(getIntersectionWithRay(&ray));
 	}
 
-	MyPoint getNormal(MyPoint point) {
+	MyPoint getNormal(MyPoint point, MyPoint camera) {
 		return center - point;
 	}
 	Plane getPlaneInPoint(MyPoint point) {
-		return Plane(point, getNormal(point));
+		return Plane(point, getNormal(point, MyPoint(INF, INF, INF)));
 	}
 
 	void createBoundinBox() {

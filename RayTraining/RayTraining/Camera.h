@@ -12,7 +12,7 @@
 
 using namespace std;
 
-const size_t NUMBER_OF_THREADS = 7;
+const size_t NUMBER_OF_THREADS = 1;
 
 void threadPixelArrayCreator(vector<vector<ObjectColor> > &result,
 	MyScreen *screen, KdTree *objectTree, vector<Light*> &lights, MyPoint placeOfCam) {
@@ -76,17 +76,5 @@ public:
 			}
 		}
 		return wholeResult;
-	}
-
-	vector<vector<ObjectColor> > _createPixelArray(MyScreen screen, vector<IObject*> &objects, vector<Light*> &lights) {
-		vector<vector<ObjectColor> > result(screen.getHeight());
-		for (size_t i = 0; i < screen.getHeight(); i++) {
-			while (screen.hasNext()) {
-				result[i].push_back(Ray(MyPoint(x, y, z), screen.next())._getColor(getPlace(), objects, lights));
-			}
-			screen.nextString();
-		}
-
-		return result;
 	}
 };
