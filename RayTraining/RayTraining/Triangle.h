@@ -41,8 +41,8 @@ public:
 
 	bool hasPoint(MyPoint p) {
 		MyPoint first = a - p, second = b - p, third = c - p;
-		return first.vec(second) * second.vec(third) > 0
-			&& second.vec(third) * third.vec(first) > 0;
+		return first.vec(second) * second.vec(third) > EPS
+			&& second.vec(third) * third.vec(first) > -EPS;
 	}
 
 	bool isIntersectWithRay(IGeom *ray) {

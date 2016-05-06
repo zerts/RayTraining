@@ -20,7 +20,7 @@ void threadPixelArrayCreator(vector<vector<ObjectColor> > &result,
 	printer.print(screen->getCorner());
 	for (size_t i = 0; i < screen->getHeight(); i++) {
 		while (screen->hasNext()) {
-			result[i].push_back(Ray(placeOfCam, screen->next()).getColor(false, placeOfCam, objectTree, lights));
+			result[i].push_back(Ray(placeOfCam, screen->next()).getColor(1., placeOfCam, objectTree, lights));
 		}
 		screen->nextString();
 	}

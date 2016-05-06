@@ -18,8 +18,8 @@ void example() {
 	Camera camera(MyPoint(1000, 1000, 1000));
 	reader.init(camera, screen);
 	vector<IObject*> obj = reader.getObjects();
-	 */
-	Texture *texture = new Texture();
+	 
+	*/Texture *texture = new Texture();
 	texture->init();
 	MyScreen screen(MyPoint(0, 0, 20), 1000, 1000, 1);
 	Camera camera(MyPoint(500, 500, 1000));
@@ -59,9 +59,11 @@ void example() {
 	obj.push_back(new Poligon(MyPoint(0., 0., -1000.), MyPoint(1000., 0, -1000), MyPoint(1000., 1000., -1000.), MyPoint(0, 1000, -1000)));
 	obj.back()->setColor(200, 0, 200);
 	//obj.back()->setTexture(texture);
+	obj.back()->setMirror(50);
 
 	obj.push_back(new Poligon(MyPoint(1000., 0., 1000), MyPoint(1000, 1000, 1000), MyPoint(1000, 1000., -1000.), MyPoint(1000, 0, -1000)));
-	obj.back()->setColor(0, 100, 0);
+	obj.back()->setColor(0, 200, 0);
+	obj.back()->setMirror(50);
 
 	obj.push_back(new Poligon(MyPoint(0., 1000., -1000.), MyPoint(1000., 1000, -1000), MyPoint(1000., 1000., 1000), MyPoint(0, 1000, 1000)));
 	obj.back()->setColor(200, 0, 200);
@@ -71,29 +73,30 @@ void example() {
 	//obj.push_back(new Sphere(MyPoint(50, 50, -100), 100));
 	//obj.back()->setColor(200, 0, 0);
 
-	obj.push_back(new Sphere(MyPoint(600, 600, -500), 300));
+	obj.push_back(new Sphere(MyPoint(500, 500, -500), 300));
 	obj.back()->setColor(200, 200, 0);
-	//obj.back()->setAlpha(2);
-	obj.back()->setMirror(50);
+	//obj.back()->setAlpha(3);
+	obj.back()->setMirror(30);
 
-	obj.push_back(new Triangle(MyPoint(0, 0, 0), MyPoint(0, 1000, -1000), MyPoint(1000, 1000, -1000)));
+	/*obj.push_back(new Triangle(MyPoint(0, 0, 0), MyPoint(0, 1000, -1000), MyPoint(1000, 1000, -1000)));
 	obj.back()->setColor(0, 0, 200);
-	obj.back()->setMirror(50);
+	obj.back()->setMirror(50);*/
 
 
-	obj.push_back(new Triangle(MyPoint(500, 0, 0), MyPoint(1000, 500, 0), MyPoint(1000, 500, -1000)));
+	/*obj.push_back(new Triangle(MyPoint(500, 0, 0), MyPoint(1000, 500, 0), MyPoint(1000, 500, -1000)));
 	obj.back()->setColor(200, 0, 0);
 	obj.back()->setMirror(50);
-	//obj.back()->setAlpha(2);
+	//obj.back()->setAlpha(2);*/
 	//printer.print(obj.size());
 
 	vector<Light*> lights;
 	//lights.push_back(new Light(MyPoint (30, 30, 30.), 0.8));
 	//lights.push_back(new Light(MyPoint(-30, -30, 30), 0.8));
 	lights.push_back(new Light(MyPoint(800, 800, 0), 1));
+	lights.push_back(new Light(MyPoint(800, 800, -600), 1));
 	//lights.push_back(new Light(MyPoint(1000, 1000, 0), 1));
 	//lights.push_back(new Light(MyPoint(500, 500, -200), 1));
-	//lights.push_back(new Light(MyPoint(50, 50, -900), 1));
+	lights.push_back(new Light(MyPoint(50, 50, 0), 1));
 	//lights.push_back(new Light(MyPoint(200, 200, 10), 1));
 
 	std::chrono::time_point<std::chrono::system_clock> start, end;

@@ -55,7 +55,7 @@ public:
 				objects.back()->setColor(200, 10, 10);
 				//objects.back()->setColor(rand(), rand(), rand());
 				objects.back()->setMirror(100);
-				objects.back()->setTexture(texture);
+				//objects.back()->setTexture(texture);
 			}
 			if (s == endOfFile) {
 				break;

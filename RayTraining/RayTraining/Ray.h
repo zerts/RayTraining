@@ -24,7 +24,7 @@ private:
 		}
 		MyPoint ray = MyPoint(point - light->getPlace());
 		return max(0.l, light->getPower() * ray.getAngleCos(currObject->getNormal(point, camera)) 
-			/ (point.distanceSqr(light->getPlace()) / 500000));
+			/ (point.distanceSqr(light->getPlace()) / 300000));
 	}
 
 	long double getBrightness(MyPoint camera, MyPoint point, KdTree *root, vector<Light*> &lights, IObject *currObject) {
@@ -172,9 +172,9 @@ public:
 		return minDist;
 	}
 
-	ObjectColor getColor(bool hasMirrored, MyPoint camera, KdTree *root, vector<Light*> &lights) {
+	ObjectColor getColor(long double hasMirrored, MyPoint camera, KdTree *root, vector<Light*> &lights) {
 		ObjectColor returnColor = ObjectColor(0, 0, 0);
-		if (distanceToBox(root->getBox()) == INF) {
+		if (hasMirrored < 0.01 || distanceToBox(root->getBox()) == INF) {
 			return returnColor;
 		}
 		bool putTwoToStack = true;
@@ -231,21 +231,22 @@ public:
 		MyPoint norm = resultObject->getNormal(resultPoint, camera), newDirection;
 		norm.normalize();
 		if (resultObject->getAlpha() == 0.) {
-			newDirection = (camera - resultPoint) + (norm * (norm * (resultPoint - camera)) * (-2.));
+			newDirection = (norm * (norm * (camera - resultPoint)) * (2.)) - (camera - resultPoint);
 			newDirection = newDirection * 0.0001;
-			if (returnColor.getRed() == 200 && returnColor.getGreen() == 200 && returnColor.getBlue() == 0
-				&& fabs(resultPoint.getX() - resultPoint.getY()) < 1) {
+			if (returnColor.getRed() == 0 && returnColor.getGreen() == 200 && returnColor.getBlue() == 0
+				&& resultPoint.getX() > 900) {
 				printer.print("point =");
 				printer.print(resultPoint);
 				printer.print("direction =");
 				printer.print(newDirection);
 			}
-			if (hasMirrored || resultObject->getMirror() > 1. - EPS) {
+			if (resultObject->getMirror() > 1. - EPS) {
 				return returnColor * getBrightness(camera, resultPoint, root, lights, resultObject);
 			}
 			return ((returnColor * resultObject->getMirror())
 				+ (Ray(resultPoint + (newDirection * 0.1), resultPoint + newDirection)
-					.getColor(true, resultPoint, root, lights) * (1. - resultObject->getMirror())))
+					.getColor(hasMirrored * ((1. - resultObject->getMirror())), resultPoint, root, lights) 
+					* (1. - resultObject->getMirror())))
 				* getBrightness(camera, resultPoint, root, lights, resultObject);
 		}
 		else {
