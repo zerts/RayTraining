@@ -13,11 +13,18 @@ private:
 	long double r;
 
 public:
-	Sphere() {};
+	Sphere() {
+		isTexture = false;
+		alpha = 0.;
+		mirror = 100.;
+	};
 	Sphere(MyPoint c, long double rr) {
 		center = c;
 		r = rr;
 		createBoundinBox();
+		isTexture = false;
+		alpha = 0.;
+		mirror = 100.;
 	}
 
 	MyPoint getCenter() { return center; }
@@ -53,7 +60,10 @@ public:
 	}
 
 	MyPoint getNormal(MyPoint point, MyPoint camera) {
-		return center - point;
+		if ((camera - point) * (center - point) < 0) {
+			return center - point;
+		}
+		return point - center;
 	}
 	Plane getPlaneInPoint(MyPoint point) {
 		return Plane(point, getNormal(point, MyPoint(INF, INF, INF)));

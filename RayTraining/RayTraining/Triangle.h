@@ -17,6 +17,8 @@ private:
 public:
 	Triangle() {
 		isTexture = false;
+		//alpha = 0.;
+		//mirror = 100.;
 	};
 	Triangle(MyPoint aa, MyPoint bb, MyPoint cc) {
 		a = aa;
@@ -25,6 +27,8 @@ public:
 		plane = Plane(aa, bb, cc);
 		createBoundinBox();
 		isTexture = false;
+		//alpha = 0.;
+		//mirror = 100.;
 	}
 	MyPoint getA() { return a; }
 	MyPoint getB() { return b; }

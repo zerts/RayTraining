@@ -40,10 +40,12 @@ public:
 		color = ObjectColor(r, g, b);
 	}
 	void setMirror(int m) {
-		mirror = (long double)(m % 100) / 100.;
+		mirror = ((long double)m) / 100.;
+		//alpha = 0.;
 	}
 	void setAlpha(int a) {
 		alpha = (long double)a;
+		//mirror = 100.;
 	}
 
 	void setTexture(Texture *t) {
