@@ -23,7 +23,7 @@ let repairWords l =
     let rec repair (acc : string list) (l : char list) = 
         match l with
         | [] -> acc
-        | (x::xs) when (x = ':' or x = '{' or x = '}' or x = '[' or x = ']' or x = ',') -> repair ((Char.ToString x)::acc) xs
+        | (x::xs) when (x = ':' || x = '{' || x = '}' || x = '[' || x = ']' || x = ',') -> repair ((Char.ToString x)::acc) xs
         | (x::xs) when x = '"' -> repair ((fst (getWord xs))::acc) (snd (getWord xs))
         | (x::xs) -> repair acc xs
     repair [] l

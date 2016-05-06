@@ -87,7 +87,7 @@ public:
 		if (!getIsTexture()) {
 			return getColor();
 		}
-		long double dist = 50 * point.distance(a), currCos = (point - a).getAngleCos(b - a);
+		long double dist = 100 * point.distance(a), currCos = (point - a).getAngleCos(b - a);
 		int currX = (int)floor(dist * currCos),
 			currY = (int)floor(dist * sqrtl(1 - sqr(currCos)));
 		//printer.print(texture->getColor(currX, currY));
