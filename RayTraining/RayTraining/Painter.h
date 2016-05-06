@@ -69,7 +69,7 @@ void example() {
 	//lights.push_back(new Light(MyPoint(-30, -30, 30), 0.8));
 	//lights.push_back(new Light(MyPoint(150, 100, 10), 1));
 	//lights.push_back(new Light(MyPoint(50, 350, 10), 1));
-	lights.push_back(new Light(MyPoint(50, 50, 150), 1));
+	lights.push_back(new Light(MyPoint(250, 300, 10), 1));
 
 	std::chrono::time_point<std::chrono::system_clock> start, end;
 	start = std::chrono::system_clock::now();

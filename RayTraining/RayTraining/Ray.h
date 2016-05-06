@@ -137,7 +137,7 @@ public:
 			KdTree* currNode = treeStack.back();
 			treeStack.pop_back();
 
-			if (/*currNode->getObject()->getAlpha() != 0. && */isIntersection(currNode->getObject()) 
+			if (currNode->getObject()->getAlpha() != 0. && isIntersection(currNode->getObject()) 
 				&& start.distance(intersection(currNode->getObject())) < minDist) {
 				//printer.print("Yes");
 				minDist = start.distance(intersection(currNode->getObject()));
@@ -228,7 +228,7 @@ public:
 		//printer.print(returnColor);
 		MyPoint norm = resultObject->getNormal(resultPoint, camera), newDirection;
 		norm.normalize();
-		//if (resultObject->getAlpha() == 0.) {
+		if (resultObject->getAlpha() == 0.) {
 			newDirection = (camera - resultPoint) + (norm * (norm * (resultPoint - camera)) * (-2.));
 			newDirection = newDirection * 0.0001;
 			if (hasMirrored) {
@@ -237,7 +237,7 @@ public:
 			return (returnColor * resultObject->getMirror() * getBrightness(camera, resultPoint, root, lights, resultObject))
 				+ (Ray(resultPoint + (newDirection * 0.1), resultPoint + newDirection)
 					.getColor(true, resultPoint, root, lights) * (1. - resultObject->getMirror()));
-		/*}
+		}
 		else {
 			long double currSin = sqrtl(1 - sqr(norm.getAngleCos(camera - resultPoint)));
 			if (currSin / resultObject->getAlpha() >= 1.) {
@@ -248,6 +248,6 @@ public:
 			newDirection = norm * (-1.) + ((norm - (fromCam * (1. / currSin))) * (1. / resultObject->getAlpha()));
 			return Ray(resultPoint + (newDirection * 0.1), resultPoint + newDirection)
 					.getColor(hasMirrored, resultPoint, root, lights);
-		}*/
+		}
 	}
 };
