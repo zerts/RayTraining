@@ -43,8 +43,11 @@ public:
 			long double a = -((ray->getStart() - center) * ray->getDirection());
 			MyPoint result = ray->getStart() + (ray->getDirection() * a);
 			long double b = result.distanceSqr(center);
-			long double c = sqrtl(sqr(r) - b);
-			return result - (ray->getDirection() * c);
+			//long double c = sqrtl(sqr(r) - b);
+			if (center.distance(ray->getStart()) < r) {
+				return result + (ray->getDirection() * sqrtl(sqr(r) - b));
+			}
+			return result - (ray->getDirection() * sqrtl(sqr(r) - b));
 		}
 		else {
 			return MyPoint(INF, INF, INF);
@@ -60,10 +63,10 @@ public:
 	}
 
 	MyPoint getNormal(MyPoint point, MyPoint camera) {
-		if ((camera - point) * (center - point) < 0) {
-			return center - point;
+		if (center.distance(camera) < r) {
+			return point - center;
 		}
-		return point - center;
+		return center - point;
 	}
 	Plane getPlaneInPoint(MyPoint point) {
 		return Plane(point, getNormal(point, MyPoint(INF, INF, INF)));

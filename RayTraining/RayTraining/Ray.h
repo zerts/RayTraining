@@ -24,7 +24,7 @@ private:
 		}
 		MyPoint ray = MyPoint(point - light->getPlace());
 		return max(0.l, light->getPower() * ray.getAngleCos(currObject->getNormal(point, camera)) 
-			/ (point.distanceSqr(light->getPlace()) / 100000));
+			/ (point.distanceSqr(light->getPlace()) / 500000));
 	}
 
 	long double getBrightness(MyPoint camera, MyPoint point, KdTree *root, vector<Light*> &lights, IObject *currObject) {
@@ -225,18 +225,28 @@ public:
 		if (resultObject == NULL) {
 			return returnColor;
 		}
+
+		//return returnColor;
 		//printer.print(returnColor);
 		MyPoint norm = resultObject->getNormal(resultPoint, camera), newDirection;
 		norm.normalize();
 		if (resultObject->getAlpha() == 0.) {
 			newDirection = (camera - resultPoint) + (norm * (norm * (resultPoint - camera)) * (-2.));
 			newDirection = newDirection * 0.0001;
-			if (hasMirrored) {
+			if (returnColor.getRed() == 200 && returnColor.getGreen() == 200 && returnColor.getBlue() == 0
+				&& fabs(resultPoint.getX() - resultPoint.getY()) < 1) {
+				printer.print("point =");
+				printer.print(resultPoint);
+				printer.print("direction =");
+				printer.print(newDirection);
+			}
+			if (hasMirrored || resultObject->getMirror() > 1. - EPS) {
 				return returnColor * getBrightness(camera, resultPoint, root, lights, resultObject);
 			}
-			return (returnColor * resultObject->getMirror() * getBrightness(camera, resultPoint, root, lights, resultObject))
+			return ((returnColor * resultObject->getMirror())
 				+ (Ray(resultPoint + (newDirection * 0.1), resultPoint + newDirection)
-					.getColor(true, resultPoint, root, lights) * (1. - resultObject->getMirror()));
+					.getColor(true, resultPoint, root, lights) * (1. - resultObject->getMirror())))
+				* getBrightness(camera, resultPoint, root, lights, resultObject);
 		}
 		else {
 			long double currSin = sqrtl(1 - sqr(norm.getAngleCos(camera - resultPoint)));

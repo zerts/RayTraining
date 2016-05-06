@@ -12,7 +12,11 @@ private:
 	MyPoint a, b, c, d;
 	Plane plane;
 public:
-	Poligon() {};
+	Poligon() {
+		isTexture = false;
+		alpha = 0.;
+		mirror = 100.;
+	};
 	Poligon(MyPoint aa, MyPoint bb, MyPoint cc, MyPoint dd) {
 		if (Triangle(aa, bb, cc).hasPoint(dd)) {
 			a = aa;
@@ -38,6 +42,9 @@ public:
 			c = bb;
 			d = cc;
 		}
+		isTexture = false;
+		alpha = 0.;
+		mirror = 100.;
 		createBoundinBox();
 		plane = Plane(aa, bb, cc);
 	}
@@ -82,6 +89,7 @@ public:
 		}
 		return plane.getN() * (-1.);
 	}
+
 	Plane getPlaneInPoint(MyPoint point) {
 		return plane;
 	}
@@ -100,6 +108,10 @@ public:
 		if (!getIsTexture()) {
 			return getColor();
 		}
-		return getColor();
+		long double dist = point.distance(a), currCos = (point - a).getAngleCos(b - a);
+		int currX = (int)floor(dist * currCos),
+			currY = (int)floor(dist * sqrtl(1 - sqr(currCos)));
+		//printer.print(texture->getColor(currX, currY));
+		return texture->getColor(currX, currY);
 	}
 };

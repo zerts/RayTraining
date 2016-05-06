@@ -72,6 +72,7 @@ public:
 		}
 		return plane.getN() * (-1.);
 	}
+
 	Plane getPlaneInPoint(MyPoint point) {
 		return plane;
 	}
