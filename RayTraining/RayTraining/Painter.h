@@ -58,8 +58,8 @@ void example() {
 	
 	obj.push_back(new Poligon(MyPoint(0., 0., -1000.), MyPoint(1000., 0, -1000), MyPoint(1000., 1000., -1000.), MyPoint(0, 1000, -1000)));
 	obj.back()->setColor(200, 0, 200);
-	//obj.back()->setTexture(texture);
-	obj.back()->setMirror(50);
+	obj.back()->setTexture(texture);
+	//obj.back()->setMirror(50);
 
 	obj.push_back(new Poligon(MyPoint(1000., 0., 1000), MyPoint(1000, 1000, 1000), MyPoint(1000, 1000., -1000.), MyPoint(1000, 0, -1000)));
 	obj.back()->setColor(0, 200, 0);
@@ -75,8 +75,8 @@ void example() {
 
 	obj.push_back(new Sphere(MyPoint(500, 500, -500), 300));
 	obj.back()->setColor(200, 200, 0);
-	//obj.back()->setAlpha(3);
-	obj.back()->setMirror(30);
+	obj.back()->setAlpha(2);
+	//obj.back()->setMirror(30);
 
 	/*obj.push_back(new Triangle(MyPoint(0, 0, 0), MyPoint(0, 1000, -1000), MyPoint(1000, 1000, -1000)));
 	obj.back()->setColor(0, 0, 200);

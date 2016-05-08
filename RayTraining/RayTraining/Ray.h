@@ -250,13 +250,15 @@ public:
 				* getBrightness(camera, resultPoint, root, lights, resultObject);
 		}
 		else {
-			long double currSin = sqrtl(1 - sqr(norm.getAngleCos(camera - resultPoint)));
-			if (currSin / resultObject->getAlpha() >= 1.) {
+			MyPoint fromCam = (camera - resultPoint);
+			norm = norm * norm.getAngleCos(fromCam);
+			fromCam.normalize();
+			long double currSin = sqrtl(1 - sqr(norm.getAngleCos(fromCam))),
+				newSin = currSin / resultObject->getAlpha();
+			if (newSin >= 1. - EPS) {
 				return returnColor * getBrightness(camera, resultPoint, root, lights, resultObject);
 			}
-			MyPoint fromCam = (camera - resultPoint);
-			fromCam.normalize();
-			newDirection = norm * (-1.) + ((norm - (fromCam * (1. / currSin))) * (1. / resultObject->getAlpha()));
+			newDirection = norm * (-sqrtl(1. - sqr(newSin))) + ((norm - fromCam) * newSin);
 			return Ray(resultPoint + (newDirection * 0.1), resultPoint + newDirection)
 					.getColor(hasMirrored, resultPoint, root, lights);
 		}
