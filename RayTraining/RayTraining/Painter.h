@@ -8,6 +8,7 @@
 #include "Poligon.h"
 #include "Light.h"
 #include "Reader.h"
+#include "AntiAliacing.h"
 
 using namespace std;
 
@@ -57,17 +58,19 @@ void example() {
 	obj.back()->setTexture(texture);*/
 	
 	obj.push_back(new Poligon(MyPoint(0., 0., -1000.), MyPoint(1000., 0, -1000), MyPoint(1000., 1000., -1000.), MyPoint(0, 1000, -1000)));
-	obj.back()->setColor(200, 0, 200);
+	obj.back()->setColor(0, 0, 200);
 	obj.back()->setTexture(texture);
-	//obj.back()->setMirror(50);
+	//obj.back()->setMirror(30);
 
 	obj.push_back(new Poligon(MyPoint(1000., 0., 1000), MyPoint(1000, 1000, 1000), MyPoint(1000, 1000., -1000.), MyPoint(1000, 0, -1000)));
 	obj.back()->setColor(0, 200, 0);
-	obj.back()->setMirror(50);
+	obj.back()->setTexture(texture);
+	//obj.back()->setMirror(30);
 
 	obj.push_back(new Poligon(MyPoint(0., 1000., -1000.), MyPoint(1000., 1000, -1000), MyPoint(1000., 1000., 1000), MyPoint(0, 1000, 1000)));
-	obj.back()->setColor(200, 0, 200);
+	obj.back()->setColor(0, 200, 200);
 	obj.back()->setTexture(texture);
+	//obj.back()->setMirror(30);
 
 	//obj.back()->setTexture(texture);
 	//obj.push_back(new Sphere(MyPoint(50, 50, -100), 100));
@@ -92,16 +95,16 @@ void example() {
 	vector<Light*> lights;
 	//lights.push_back(new Light(MyPoint (30, 30, 30.), 0.8));
 	//lights.push_back(new Light(MyPoint(-30, -30, 30), 0.8));
-	lights.push_back(new Light(MyPoint(800, 800, 0), 1));
-	lights.push_back(new Light(MyPoint(800, 800, -600), 1));
+	//lights.push_back(new Light(MyPoint(800, 800, 0), 1));
+	lights.push_back(new Light(MyPoint(800, 800, -800), 1));
 	//lights.push_back(new Light(MyPoint(1000, 1000, 0), 1));
-	//lights.push_back(new Light(MyPoint(500, 500, -200), 1));
+	lights.push_back(new Light(MyPoint(700, 700, 0), 1));
 	lights.push_back(new Light(MyPoint(50, 50, 0), 1));
 	//lights.push_back(new Light(MyPoint(200, 200, 10), 1));
 
 	std::chrono::time_point<std::chrono::system_clock> start, end;
 	start = std::chrono::system_clock::now();
-	printer.printImage(camera.createPixelArray(screen, obj, lights));
+	printer.printImage(antiAliacing(camera.createPixelArray(screen, obj, lights)));
 	end = std::chrono::system_clock::now();
 	std::chrono::duration<double> elapsed_seconds = end - start;
 	dout << "time with kdtree = " << elapsed_seconds.count() << std::endl;

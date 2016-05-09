@@ -233,13 +233,6 @@ public:
 		if (resultObject->getAlpha() == 0.) {
 			newDirection = (norm * (norm * (camera - resultPoint)) * (2.)) - (camera - resultPoint);
 			newDirection = newDirection * 0.0001;
-			if (returnColor.getRed() == 0 && returnColor.getGreen() == 200 && returnColor.getBlue() == 0
-				&& resultPoint.getX() > 900) {
-				printer.print("point =");
-				printer.print(resultPoint);
-				printer.print("direction =");
-				printer.print(newDirection);
-			}
 			if (resultObject->getMirror() > 1. - EPS) {
 				return returnColor * getBrightness(camera, resultPoint, root, lights, resultObject);
 			}

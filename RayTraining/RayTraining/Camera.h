@@ -12,12 +12,11 @@
 
 using namespace std;
 
-const size_t NUMBER_OF_THREADS = 1;
+const size_t NUMBER_OF_THREADS = 7;
 
 void threadPixelArrayCreator(vector<vector<ObjectColor> > &result,
 	MyScreen *screen, KdTree *objectTree, vector<Light*> &lights, MyPoint placeOfCam) {
 	Printer printer;
-	printer.print(screen->getCorner());
 	for (size_t i = 0; i < screen->getHeight(); i++) {
 		while (screen->hasNext()) {
 			result[i].push_back(Ray(placeOfCam, screen->next()).getColor(1., placeOfCam, objectTree, lights));

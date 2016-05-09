@@ -24,3 +24,11 @@ public:
 			blue + anotherColor.getBlue());
 	}
 };
+
+ObjectColor mean(ObjectColor first, ObjectColor second, ObjectColor third, ObjectColor forth) {
+	return ObjectColor(
+		(first.getRed() + second.getRed() + third.getRed() + forth.getRed()) / 4,
+		(first.getGreen() + second.getGreen() + third.getGreen() + forth.getGreen()) / 4,
+		(first.getBlue() + second.getBlue() + third.getBlue() + forth.getBlue()) / 4
+		);
+}

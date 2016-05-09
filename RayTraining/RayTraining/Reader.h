@@ -31,12 +31,13 @@ private:
 		while (s != vertex) {
 			in >> s;
 		}
-		in >> x >> y >> z;
-		first = MyPoint(x, y, z);
-		in >> s >> x >> y >> z;
-		second = MyPoint(x, y, z);
-		in >> s >> x >> y >> z;
-		third = MyPoint(x, y, z);
+		in >> y >> z >> x;
+		long double shiftX = 900., shiftY = 100., shiftZ = 500., scale = 250.;
+		first = MyPoint(-x * scale + shiftX, y * scale + shiftY, -z * scale - shiftZ);
+		in >> s >> y >> z >> x;
+		second = MyPoint(-x * scale + shiftX, y * scale + shiftY, -z * scale - shiftZ);
+		in >> s >> y >> z >> x;
+		third = MyPoint(-x * scale + shiftX, y * scale + shiftY, -z * scale - shiftZ);
 		Triangle tr(first, second, third);
 		return new Triangle(first, second, third);
 	}
@@ -54,7 +55,7 @@ public:
 				objects.push_back(getNewTriangle());
 				objects.back()->setColor(200, 10, 10);
 				//objects.back()->setColor(rand(), rand(), rand());
-				objects.back()->setMirror(100);
+				//objects.back()->setMirror(100);
 				//objects.back()->setTexture(texture);
 			}
 			if (s == endOfFile) {

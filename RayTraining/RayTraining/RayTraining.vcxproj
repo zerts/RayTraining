@@ -131,6 +131,7 @@
     <Text Include="output.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AntiAliacing.h" />
     <ClInclude Include="BoundinBox.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="IGeom.h" />

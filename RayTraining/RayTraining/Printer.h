@@ -8,7 +8,7 @@
 
 using namespace std;
 
-ifstream in("input.txt");
+ifstream in("input.stl");
 ofstream out("output.txt");
 ofstream dout("debugOutput.txt");
 
