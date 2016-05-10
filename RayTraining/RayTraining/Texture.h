@@ -3,18 +3,22 @@
 #include <vector>
 #include "ObjectColor.h"
 #include <fstream>
+#include <string>
 
 using namespace std;
-
-ifstream tin("texture.txt");
 
 class Texture {
 private:
 	vector<vector<ObjectColor> > pixels;
 
 public:
-	void init() {
+	void init(string fileName) {
+		ofstream tout("textureName.txt");
+		tout << fileName;
+		tout.close();
+		system("imageReader.exe");
 		size_t height, width;
+		ifstream tin(fileName + ".txt");
 		tin >> height >> width;
 		pixels.resize(height);
 		for (size_t i = 0; i < height; i++) {
@@ -30,4 +34,5 @@ public:
 		return pixels[i % pixels.size()][j % pixels[i % pixels.size()].size()];
 	}
 	int getHeight() { return pixels.size(); }
+	int getWidth() { return pixels[0].size(); }
 };

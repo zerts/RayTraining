@@ -2,7 +2,7 @@
 
 int main()
 {
-	system("imageReader.exe");
+	//system("imageReader.exe");
 	example();
 	in.close();
 	out.close();
@@ -82,6 +82,40 @@ pixels[i].push_back(ObjectColor(r, g, b));
 }
 createImage(pixels, "image.png");
 in.close();
+return 0;
+}
+*/
+
+//ImageReader code
+
+/*
+#include <fstream>
+#include <vector>
+
+#using <System.dll>
+#using <System.Drawing.dll>
+
+
+using namespace std;
+using namespace System;
+using namespace System::Drawing;
+
+int main() {
+String^ fileName = System::IO::File::ReadAllText("textureName.txt");
+System::IO::StreamWriter^ out = gcnew System::IO::StreamWriter(fileName + ".txt");
+Image^ texture = Image::FromFile(fileName + ".png");
+Bitmap^ bitmap = gcnew Bitmap(texture);
+out->WriteLine(texture->Height);
+out->WriteLine(texture->Width);
+for (int i = 0; i < texture->Height; i++) {
+for (int j = 0; j < texture->Width; j++) {
+Color currPixel = bitmap->GetPixel(j, i);
+out->WriteLine(currPixel.R);
+out->WriteLine(currPixel.G);
+out->WriteLine(currPixel.B);
+}
+}
+out->Close();
 return 0;
 }
 */

@@ -15,6 +15,7 @@ private:
 public:
 	Sphere() {
 		isTexture = false;
+		textureScale = 1.;
 		alpha = 0.;
 		mirror = 100.;
 	};
@@ -25,6 +26,7 @@ public:
 		isTexture = false;
 		alpha = 0.;
 		mirror = 100.;
+		textureScale = 1.;
 	}
 
 	MyPoint getCenter() { return center; }
@@ -83,6 +85,11 @@ public:
 		if (!getIsTexture()) {
 			return getColor();
 		}
+		int currX = (int)floor(textureScale
+			* MyPoint(center.getX(), point.getY(), center.getZ()).getAngleCos(point - center) / 6.28 * texture->getWidth()),
+			currY = (int)floor(textureScale * (point.getY() - center.getY() + r) / (2. * r) * texture->getHeight());
+		//printer.print(texture->getColor(currX, currY));
+		return texture->getColor(currX, currY);
 		return getColor();
 	}
 };

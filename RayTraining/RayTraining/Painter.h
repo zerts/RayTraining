@@ -20,9 +20,11 @@ void example() {
 	reader.init(camera, screen);
 	vector<IObject*> obj = reader.getObjects();
 	 
-	*/Texture *texture = new Texture();
-	texture->init();
-	MyScreen screen(MyPoint(0, 0, 20), 1000, 1000, 1);
+	*/Texture *texture = new Texture(), *texture2 = new Texture(), *texture3 = new Texture();
+	texture3->init("wall");
+	texture2->init("grass");
+	texture->init("metal");
+	MyScreen screen(MyPoint(0, 0, 0), 1000, 1000, 1);
 	Camera camera(MyPoint(500, 500, 1000));
 
 
@@ -60,17 +62,30 @@ void example() {
 	obj.push_back(new Poligon(MyPoint(0., 0., -1000.), MyPoint(1000., 0, -1000), MyPoint(1000., 1000., -1000.), MyPoint(0, 1000, -1000)));
 	obj.back()->setColor(0, 0, 200);
 	obj.back()->setTexture(texture);
+	obj.back()->setTextureScale(3);
 	//obj.back()->setMirror(30);
 
 	obj.push_back(new Poligon(MyPoint(1000., 0., 1000), MyPoint(1000, 1000, 1000), MyPoint(1000, 1000., -1000.), MyPoint(1000, 0, -1000)));
 	obj.back()->setColor(0, 200, 0);
-	obj.back()->setTexture(texture);
+	obj.back()->setTexture(texture2);
+	obj.back()->setTextureScale(3);
 	//obj.back()->setMirror(30);
 
 	obj.push_back(new Poligon(MyPoint(0., 1000., -1000.), MyPoint(1000., 1000, -1000), MyPoint(1000., 1000., 1000), MyPoint(0, 1000, 1000)));
 	obj.back()->setColor(0, 200, 200);
 	obj.back()->setTexture(texture);
+	obj.back()->setTextureScale(3);
 	//obj.back()->setMirror(30);
+
+	obj.push_back(new Poligon(MyPoint(0., 0, -1000.), MyPoint(0, 0, 1000), MyPoint(1000., 0, 1000), MyPoint(1000., 0, -1000)));
+	obj.back()->setColor(0, 0, 200);
+	//obj.back()->setTexture(texture);
+	obj.back()->setMirror(30);
+
+	obj.push_back(new Poligon(MyPoint(0, 0., 1000), MyPoint(0, 0, -1000), MyPoint(0, 1000., -1000.), MyPoint(0, 1000, 1000)));
+	obj.back()->setColor(0, 200, 0);
+	//obj.back()->setTexture(texture2);
+	obj.back()->setMirror(30);
 
 	//obj.back()->setTexture(texture);
 	//obj.push_back(new Sphere(MyPoint(50, 50, -100), 100));
@@ -78,8 +93,10 @@ void example() {
 
 	obj.push_back(new Sphere(MyPoint(500, 500, -500), 300));
 	obj.back()->setColor(200, 200, 0);
-	obj.back()->setAlpha(2);
-	//obj.back()->setMirror(30);
+	//obj.back()->setAlpha(2);
+	//obj.back()->setMirror(50);
+	obj.back()->setTexture(texture3);
+	obj.back()->setTextureScale(10);
 
 	/*obj.push_back(new Triangle(MyPoint(0, 0, 0), MyPoint(0, 1000, -1000), MyPoint(1000, 1000, -1000)));
 	obj.back()->setColor(0, 0, 200);
@@ -97,10 +114,10 @@ void example() {
 	//lights.push_back(new Light(MyPoint(-30, -30, 30), 0.8));
 	//lights.push_back(new Light(MyPoint(800, 800, 0), 1));
 	lights.push_back(new Light(MyPoint(800, 800, -800), 1));
-	//lights.push_back(new Light(MyPoint(1000, 1000, 0), 1));
+	//lights.push_back(new Light(MyPoint(900, 900, 0), 1));
 	lights.push_back(new Light(MyPoint(700, 700, 0), 1));
-	lights.push_back(new Light(MyPoint(50, 50, 0), 1));
-	//lights.push_back(new Light(MyPoint(200, 200, 10), 1));
+	lights.push_back(new Light(MyPoint(800, 50, 0), 1));
+	lights.push_back(new Light(MyPoint(200, 200, -800), 1));
 
 	std::chrono::time_point<std::chrono::system_clock> start, end;
 	start = std::chrono::system_clock::now();

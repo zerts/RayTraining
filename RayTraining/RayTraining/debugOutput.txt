@@ -1,2 +1,2 @@
-time with kdtree = 6.62767
-time without kdtree = 5e-07
+time with kdtree = 8.08741
+time without kdtree = 4e-07

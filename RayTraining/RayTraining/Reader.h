@@ -46,7 +46,7 @@ public:
 		camera = cam;
 		screen = scr;
 		texture = new Texture();
-		texture->init();
+		texture->init("texture");
 	}
 
 	vector<IObject*> getObjects() {

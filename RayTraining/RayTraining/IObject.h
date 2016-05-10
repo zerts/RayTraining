@@ -11,7 +11,7 @@
 class IObject {
 protected:
 	ObjectColor color;
-	long double alpha, mirror;
+	long double alpha, mirror, textureScale;
 	bool isTexture;
 	Printer printer;
 	BoundinBox box;
@@ -53,9 +53,14 @@ public:
 		texture = t;
 	}
 
+	void setTextureScale(long double sc) {
+		textureScale = sc;
+	}
+
 	BoundinBox getBox() { return box;	}
 	long double getAlpha() { return alpha; }
 	long double getMirror() { return mirror; }
+	long double getTextureScale() { return textureScale; }
 
 	virtual bool isIntersectWithRay(IGeom*) = 0;
 

@@ -137,7 +137,7 @@ public:
 			KdTree* currNode = treeStack.back();
 			treeStack.pop_back();
 
-			if (currNode->getObject()->getAlpha() != 0. && isIntersection(currNode->getObject()) 
+			if (currNode->getObject()->getAlpha() < EPS && isIntersection(currNode->getObject()) 
 				&& start.distance(intersection(currNode->getObject())) < minDist) {
 				//printer.print("Yes");
 				minDist = start.distance(intersection(currNode->getObject()));

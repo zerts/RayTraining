@@ -19,6 +19,7 @@ public:
 		isTexture = false;
 		alpha = 0.;
 		mirror = 100.;
+		textureScale = 1.;
 	};
 	Triangle(MyPoint aa, MyPoint bb, MyPoint cc) {
 		a = aa;
@@ -29,6 +30,7 @@ public:
 		isTexture = false;
 		alpha = 0.;
 		mirror = 100.;
+		textureScale = 1.;
 	}
 	MyPoint getA() { return a; }
 	MyPoint getB() { return b; }
@@ -92,7 +94,7 @@ public:
 		if (!getIsTexture()) {
 			return getColor();
 		}
-		long double dist = 100 * point.distance(a), currCos = (point - a).getAngleCos(b - a);
+		long double dist = textureScale * point.distance(a), currCos = (point - a).getAngleCos(b - a);
 		int currX = (int)floor(dist * currCos),
 			currY = (int)floor(dist * sqrtl(1 - sqr(currCos)));
 		//printer.print(texture->getColor(currX, currY));
